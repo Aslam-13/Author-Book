@@ -30,15 +30,8 @@ exports.updateBook =  asyncHandler(async (req, res, next) => {
      success: true,
       data: book}); 
 });
-exports.getBooks =  asyncHandler(async (req, res, next) => {    
-  let book = await Book.find().sort({ createdAt: -1 })
-  if(!book){
-    return next(new ErrorResponse(`Books not available`, 404));
-  }
-  
-  res.status(200).json({
-     success: true,
-      data: book}); 
+exports.getBooks =  asyncHandler(async (req, res, next) => {  
+  res.status(200).json(res.advancedResults); 
 });
 exports.deleteBook = asyncHandler(async (req, res, next)=>{ 
   const book = await Book.findById(req.params.id);
