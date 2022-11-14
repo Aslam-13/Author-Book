@@ -1,5 +1,5 @@
 {
-  "name": "Author-Book",
+  "name": "author-book",
   "version": "1.0.0",
   "description": "An app to manage authors and related books",
   "main": "server.js",
