@@ -2,13 +2,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const errorHandler = require('./middleware/error');
 const colors = require('colors');
 const path = require('path'); 
 const cookieParser = require('cookie-parser');
 
 
 
-
+//route files
+const auth = require('./routes/auth'); 
+const book = require('./routes/book')
+const author = require('./routes/author');
 // config
 dotenv.config({path: './config/config.env'});
 
@@ -39,6 +43,12 @@ app.get('/', (req, res) => {
     message: 'API service running 🚀',
   });
 });
+
+app.use('/api/v1/auth', auth);  
+app.use('/api/v1/book', book);
+app.use('/api/v1/author', author);
+// Errors middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
